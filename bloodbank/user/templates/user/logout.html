@@ -1,0 +1,15 @@
+{% extends "user/base.html" %} {% block title%} E-Blood Bank | LOGOUT
+{%endblock%} {% block content %}
+<div class="container_login">
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1" class="tab">Logged Out</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab"></label>
+      <div class="container">
+        <h1>You have been logged out.</h1>
+        <p>Login Again? <a href="{% url 'login' %}">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

@@ -1,0 +1,49 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="../../static/website_pages/styles/bloodbanklist.css">
+
+{% endblock links %}
+{% block content %}
+<div class="container">
+
+    <div class="container2 demo animated">
+        <h1>Blood Packets</h1>
+
+    </div>
+
+    <form action="{% url 'bloodpackets-list' %}" method="get">
+        <input class="glow-on-hover" name="bloodgroupz" type="text" placeholder="Enter Blood Group">
+        <button class="glow-on-hover" type="submit">Search </button>
+    </form>
+
+
+    <table class="bloodbank-table">
+        <tr>
+            <th class="table-headers">PacketID</th>
+            <th class="table-headers">Blood Bank Name </th>
+            <th class="table-headers">City</th>
+            <th class="table-headers">Blood Group</th>
+            <th class="table-headers">Address</th>
+            
+        </tr>
+        {% for bloodpacket in bloodpackets %}
+        <tr>
+            <td class="table-content"><a href="{% url 'bloodpackets-detail' bloodpacket.id %}"> {{bloodpacket.packetID}} </a>
+            </td>
+            <td class="table-content">{{bloodpacket.Blood_bank.name}}</td>
+            <td class="table-content">{{bloodpacket.Blood_bank.city}}</td>
+            <td class="table-content">{{bloodpacket.get_bloodGroup_display}}</td>
+            <td class="table-content">{{bloodpacket.Blood_bank.PostalAddress}}</td>
+        </tr>
+        {% empty %}
+        <li class="media content-section">Sorry, no blood packets in this list. Search is Case Sensitive.
+        </li>
+        {% endfor %}
+        
+    </table>
+</div>
+{% endblock content %}
+
+

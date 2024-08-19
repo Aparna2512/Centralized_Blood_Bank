@@ -1,0 +1,39 @@
+{% extends "user/base.html" %}
+{% load crispy_forms_tags %}
+{% block title%}
+E-Blood Bank | SIGN UP
+{%endblock%}
+
+{% block content %}
+<div class="container_register">
+  <div class="register-wrap">
+    <div class="register-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab"></label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">REGISTER</label>
+      <!-- <div class="signup" >SIGN UP</div> -->
+
+      <div class="register-form">
+        <div class="sign-up-htm">
+
+          <form method="POST" action="{% url 'register'%}">
+            {%csrf_token%}
+
+            {{ form|crispy}}
+            <div class="group">
+              <button type="submit" class="button">Register</button>
+            </div>
+
+
+            <div class="hr"></div>
+
+            <div class="foot-lnk-register">
+              <a href="{%url 'login'%}">Already Have an Account? Sign In.</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

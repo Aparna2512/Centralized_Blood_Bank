@@ -1,0 +1,48 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="../../static/website_pages/styles/bloodbanklist.css">
+
+{% endblock links %}
+{% block content %}
+<div class="container">
+
+    <div class="container2 demo animated">
+        <h1>Blood Banks</h1>
+
+    </div>
+
+    <form action="{% url 'bloodbanks-list' %}" method="get">
+        <input class="glow-on-hover" name="cityz" type="text" placeholder="Enter City">
+        <button class="glow-on-hover" type="submit">Search </button>
+    </form>
+
+
+    <table class="bloodbank-table">
+        <tr>
+            <th class="table-headers">Name</th>
+            <th class="table-headers">City</th>
+            <th class="table-headers">State</th>
+            <th class="table-headers">Email</th>
+            <th class="table-headers">Phone</th>
+            <th class="table-headers">Address</th>
+        </tr>
+        {% for bloodbank in bloodbanks %}
+        <tr>
+            <td class="table-content"><a href="{% url 'bloodbanks-detail' bloodbank.id %}"> {{bloodbank.name}} </a></h1>
+            </td>
+            <td class="table-content">{{bloodbank.city}}</td>
+            <td class="table-content">{{bloodbank.state}}</td>
+            <td class="table-content">{{bloodbank.email}}</td>
+            <td class="table-content">{{bloodbank.contactNo}}</td>
+            <td class="table-content">{{bloodbank.PostalAddress}}</td>
+        </tr>
+        {% empty %}
+            <li class="media content-section">Sorry, no bloodbanks in this list. Search is Case Sensitive.
+            </li>
+        {% endfor %}
+        
+    </table>
+</div>
+{% endblock content %}
